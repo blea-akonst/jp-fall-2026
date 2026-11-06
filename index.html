@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Япония, 28.10 – 5.11.2026</title>
+<title>Япония и Тайвань, осень 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -20,6 +20,7 @@
   --yellow-bg:#FBF3DB;--yellow-fg:#956400;
   --serif:'Playfair Display','Georgia',serif;
   --sans:'Manrope','Helvetica Neue',sans-serif;
+  --pin:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' fill-rule='evenodd' d='M12 22.5s-7.5-6.7-7.5-12.6a7.5 7.5 0 0 1 15 0c0 5.9-7.5 12.6-7.5 12.6zm0-9.6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'/%3E%3C/svg%3E");
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -52,13 +53,27 @@ main,header,footer{position:relative;z-index:1}
 .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
 a{color:inherit;text-decoration:underline;text-decoration-color:rgba(0,0,0,.25);text-underline-offset:3px}
 a:hover{text-decoration-color:var(--ink)}
+a.pin{
+  position:relative;display:inline-block;
+  width:.95em;height:.95em;margin:0 .1em 0 .28em;vertical-align:-.12em;
+  background:var(--red-fg);opacity:.75;text-decoration:none;
+  -webkit-mask:var(--pin) center/contain no-repeat;mask:var(--pin) center/contain no-repeat;
+  transition:opacity .15s ease,transform .15s ease;
+}
+a.pin::after{content:"";position:absolute;inset:-9px}
+a.pin:hover{opacity:1;transform:translateY(-1px)}
+a.pin:focus-visible{outline:2px solid var(--blue-fg);outline-offset:2px;opacity:1}
+.pin-legend{
+  display:inline-block;width:.95em;height:.95em;vertical-align:-.12em;background:var(--red-fg);
+  -webkit-mask:var(--pin) center/contain no-repeat;mask:var(--pin) center/contain no-repeat;
+}
 nav{
   position:sticky;top:0;z-index:10;
   background:rgba(247,246,243,.82);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
 }
-.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1060px;margin:0 auto}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;max-width:1060px;margin:0 auto}
 .nav-brand{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
 .nav-links{display:flex;gap:26px}
 .nav-links a{font-size:14px;font-weight:600;text-decoration:none;color:var(--muted)}
@@ -103,14 +118,15 @@ h1{
   background:var(--surface);
 }
 .route-inner{
-  display:grid;grid-template-columns:1fr auto 1fr;gap:24px;align-items:center;
+  display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:24px;align-items:center;
   padding:30px 24px;max-width:1060px;margin:0 auto;
 }
 .route-city .name{font-family:var(--serif);font-size:24px;letter-spacing:-.01em}
 .route-city .meta{font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.route-city:nth-child(3){text-align:center}
 .route-city:last-child{text-align:right}
 .route-link{display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted)}
-.route-link .line{width:120px;height:1px;background:var(--ink);position:relative}
+.route-link .line{width:90px;height:1px;background:var(--ink);position:relative}
 .route-link .line::after{
   content:"";position:absolute;right:0;top:-3px;
   border-left:7px solid var(--ink);border-top:3.5px solid transparent;border-bottom:3.5px solid transparent;
@@ -124,7 +140,41 @@ section.block{padding:104px 0 0}
 .section-head{margin-bottom:44px;max-width:62ch}
 .section-head .kicker{margin-bottom:16px}
 h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.6vw,42px);letter-spacing:-.02em;line-height:1.12}
-.section-head p{color:var(--muted);margin-top:14px}
+.section-head p{color:var(--muted)}
+.group-label{
+  display:flex;align-items:center;gap:14px;margin:0 0 18px;
+  font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+}
+.group-label::after{content:"";flex:1;height:1px;background:var(--line)}
+.group-label.later{margin-top:64px}
+.chapter{scroll-margin-top:76px}
+.chapter + .chapter{margin-top:16px}
+.chapter>summary{
+  list-style:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:28px 34px;transition:box-shadow .2s ease;
+}
+.chapter>summary::-webkit-details-marker{display:none}
+.chapter>summary:hover{box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.chapter>summary:focus-visible{outline:2px solid var(--blue-fg);outline-offset:3px}
+.chapter-title .kicker{margin-bottom:12px}
+.chapter-meta{color:var(--muted);font-size:15px;margin-top:6px}
+.chapter-toggle{
+  display:flex;align-items:center;gap:12px;flex:none;
+  font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+}
+.chapter-toggle .chev{
+  width:38px;height:38px;border:1px solid var(--line);border-radius:9999px;background:var(--bg);
+  display:flex;align-items:center;justify-content:center;transition:transform .25s ease;
+}
+.chapter-toggle svg{width:16px;height:16px;stroke:var(--ink);stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.chapter[open] .chev{transform:rotate(180deg)}
+.chapter .when-open{display:none}
+.chapter[open] .when-open{display:inline}
+.chapter[open] .when-closed{display:none}
+.chapter-body{padding:40px 0 24px}
+.chapter-body .section-head{margin-bottom:36px}
 .days{display:flex;flex-direction:column;gap:20px}
 .day{
   background:var(--surface);border:1px solid var(--line);border-radius:12px;
@@ -190,44 +240,18 @@ h2{font-family:var(--serif);font-weight:600;font-size:clamp(30px,3.6vw,42px);let
 }
 .step p{margin:0}
 .step .t{font-weight:700}
-.bento{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;margin-top:44px}
+.step .when{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px}
 .card{
   background:var(--surface);border:1px solid var(--line);border-radius:12px;
   padding:32px 36px;transition:box-shadow .2s ease;
 }
 .card:hover{box-shadow:0 2px 8px rgba(0,0,0,.04)}
-.card.tall{grid-row:span 2}
-.card.wide{grid-column:1/-1}
-.checks-cols{columns:2;column-gap:44px}
-.checks-cols .check{break-inside:avoid}
-.card h3{font-family:var(--serif);font-weight:600;font-size:23px;letter-spacing:-.01em;margin:14px 0 18px}
-.card-icon{
-  width:44px;height:44px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-}
-.card-icon.red{background:var(--red-bg)}
-.card-icon.blue{background:var(--blue-bg)}
-.card-icon.green{background:var(--green-bg)}
-.card-icon.yellow{background:var(--yellow-bg)}
-.card-icon svg{width:24px;height:24px}
-.sketch-thin{stroke:var(--ink);stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
-.check{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
-.check:last-of-type{border-bottom:none}
-.check input{
-  appearance:none;-webkit-appearance:none;
-  width:19px;height:19px;flex:none;margin-top:3px;
-  border:1.5px solid var(--muted);border-radius:4px;background:var(--surface);
-  display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
-}
-.check input:checked{background:#111;border-color:#111}
-.check input:checked::after{content:"";width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
-.check input:checked~span{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(0,0,0,.3)}
-.check span{font-size:15.5px}
-.kv{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15.5px}
-.kv:last-of-type{border-bottom:none}
-.kv .k{color:var(--muted)}
-.kv .v{font-weight:700;font-size:14.5px;text-align:right;white-space:nowrap}
-.card p.small{font-size:15px;color:var(--muted)}
+.card h3{font-family:var(--serif);font-weight:600;font-size:23px;letter-spacing:-.01em;margin:0 0 12px}
+.rules{list-style:none}
+.rules li{padding:11px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.rules li:last-child{border-bottom:none}
+.rules b{font-weight:700}
 footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surface)}
 .footer-inner{
   max-width:1060px;margin:0 auto;padding:36px 24px;
@@ -240,18 +264,20 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
   .hero-grid{grid-template-columns:1fr;gap:40px}
   .stats{grid-template-columns:repeat(2,1fr)}
   .bento{grid-template-columns:1fr}
-  .card.tall{grid-row:auto}
-  .checks-cols{columns:1}
   .route-inner{grid-template-columns:1fr;text-align:left;gap:14px}
-  .route-city:last-child{text-align:left}
+  .route-city:nth-child(3),.route-city:last-child{text-align:left}
   .route-link{flex-direction:row;justify-content:flex-start}
   .day-body{grid-template-columns:1fr;gap:26px}
 }
 @media (max-width:720px){
   .day{padding:26px 22px}
+  .card{padding:26px 22px}
+  .chapter>summary{padding:22px 22px;gap:16px}
+  .chapter .chapter-toggle .label{display:none!important}
   .hero{padding:64px 0 48px}
   section.block{padding:76px 0 0}
-  .nav-links{gap:16px}
+  .nav-brand{display:none}
+  .nav-inner{justify-content:center}
 }
 </style>
 </head>
@@ -260,10 +286,11 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
 
 <nav>
   <div class="nav-inner">
-    <span class="nav-brand">Япония, осень 2026</span>
+    <span class="nav-brand">Япония и Тайвань, осень 2026</span>
     <div class="nav-links">
       <a href="#tokyo">Токио</a>
       <a href="#kansai">Кансай</a>
+      <a href="#taiwan">Тайвань</a>
     </div>
   </div>
 </nav>
@@ -271,16 +298,16 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="kicker">28 октября – 5 ноября 2026</span>
-      <h1>Пять ночей в Токио, три в Осаке</h1>
-      <p class="lead">План на сезон красных клёнов: куда ехать в какой день и чем жертвовать, если перестаём успевать. Прилёт в Нариту, вылет из Кансая, между ними синкансэн</p>
+      <span class="kicker">28 октября – 9 ноября 2026</span>
+      <h1>Токио, Кансай и четыре дня в Тайбэе</h1>
+      <p class="lead">Япония пройдена и свёрнута ниже, сейчас актуален Тайвань: храмы и ночные рынки, горячие источники Бэйтоу, фонари Шифэня и Цзюфэнь на закате. Вылет 9 ноября в 18:30</p>
       <div class="hero-actions">
-        <a class="btn" href="#tokyo">Токио</a>
-        <a class="btn ghost" href="#kansai">Кансай</a>
+        <a class="btn" href="#taiwan">Тайвань</a>
+        <a class="btn ghost" href="#tokyo">Япония</a>
       </div>
     </div>
     <figure class="hero-art photo-frame">
-      <img src="assets/hero-chureito.webp" alt="Пагода Чурэйто и Фудзи в красных клёнах, октябрь">
+      <img src="assets/hero-taipei.webp" alt="Ночной Тайбэй и башня 101 с горы Слона">
     </figure>
   </div>
 </header>
@@ -289,7 +316,7 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
   <div class="route-inner">
     <div class="route-city">
       <div class="name">Токио</div>
-      <div class="meta">5 ночей в Канде, вылазки к Фудзи и в Камакуру</div>
+      <div class="meta">5 ночей в Канде</div>
     </div>
     <div class="route-link">
       <span class="cap">синкансэн 2.11</span>
@@ -298,7 +325,16 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
     </div>
     <div class="route-city">
       <div class="name">Осака</div>
-      <div class="meta">3 ночи в Намбе у Дотонбори, вылазки в Нару и Киото</div>
+      <div class="meta">3 ночи в Намбе</div>
+    </div>
+    <div class="route-link">
+      <span class="cap">перелёт 5.11</span>
+      <span class="line"></span>
+      <span class="cap">KIX → Тайбэй</span>
+    </div>
+    <div class="route-city">
+      <div class="name">Тайбэй</div>
+      <div class="meta">база в Чжуншане, вылет 9.11</div>
     </div>
   </div>
 </div>
@@ -306,16 +342,26 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
 <main>
 <div class="wrap">
   <div class="stats reveal">
-    <div class="stat"><div class="num">9</div><div class="cap">дней на маршруте</div></div>
-    <div class="stat"><div class="num">6</div><div class="cap">городов, считая Нару и Киото</div></div>
-    <div class="stat"><div class="num">2</div><div class="cap">базы: Канда в Токио и Намба в Осаке</div></div>
-    <div class="stat"><div class="num">1</div><div class="cap">синкансэн между ними</div></div>
+    <div class="stat"><div class="num">13</div><div class="cap">дней на маршруте</div></div>
+    <div class="stat"><div class="num">2</div><div class="cap">страны</div></div>
+    <div class="stat"><div class="num">3</div><div class="cap">базы: Канда, Намба и Чжуншань</div></div>
+    <div class="stat"><div class="num">4</div><div class="cap">дня в Тайбэе, один за городом</div></div>
   </div>
 
-  <section class="block" id="tokyo">
-    <div class="section-head reveal">
-      <span class="kicker">28.10 – 2.11, база в Канде</span>
-      <h2>Токио</h2>
+  <section class="block">
+    <div class="group-label reveal">Япония · 28.10 – 5.11, пройдено</div>
+
+    <details class="chapter" id="tokyo">
+      <summary>
+        <div class="chapter-title">
+          <span class="kicker">28.10 – 2.11, база в Канде</span>
+          <h2>Токио</h2>
+          <p class="chapter-meta">Готокудзи и Асакуса, Фудзи, Гарри Поттер, Камакура, Гибли</p>
+        </div>
+        <span class="chapter-toggle"><span class="label when-closed">Развернуть</span><span class="label when-open">Свернуть</span><span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9.5 L12 15 L18 9.5"/></svg></span></span>
+      </summary>
+      <div class="chapter-body">
+    <div class="section-head">
       <p>Из Канды почти всё едет без пересадок: станция Tokyo с Narita Express, синкансэном и линией в Камакуру в одной остановке, по Chuo Rapid двенадцать минут до Синдзюку и полчаса до Митаки, по линии Гиндза Асакуса, Гиндза и Сибуя. Пять ночей, из них один день целиком отдаём горе</p>
       <div class="note">
         <b>База:</b> отель в Канде, Тиёда-ку. Четыре минуты от восточного выхода JR Kanda, три от Iwamotocho. Заезд с 15:00, выезд до 10:00, завтрак-буфет включён с 6:30 до 9:30, чемоданы до заезда и после выезда хранят на ресепшене
@@ -331,8 +377,8 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
         <div class="day-body">
           <div class="day-text">
             <h3>Нарита, Канда, первый неон</h3>
-            <p>Narita Express довозит до станции Tokyo примерно за час, оттуда одна остановка до Kanda, в отеле будем к двум. Номер дают с 15:00, чемоданы оставляем на ресепшене. Вечером двенадцать минут по Chuo Rapid до Синдзюку: неон Кабукитё и ужин в <a href="https://en.wikipedia.org/wiki/Omoide_Yokoch%C5%8D" target="_blank" rel="noopener">Omoide Yokocho</a>, переулке на полсотни идзакай у путей</p>
-            <p class="aside">Если после перелёта останутся силы, заглянем в <a href="https://en.wikipedia.org/wiki/Golden_Gai" target="_blank" rel="noopener">Golden Gai</a> по соседству: квартал двухсот крошечных баров на шесть мест каждый. Внутрь идти не обязательно, он и снаружи работает как музей под открытым небом. Если сил нет совсем, в двух минутах от отеля идзакаи под путями у станции Kanda</p>
+            <p>Narita Express довозит до станции Tokyo примерно за час, оттуда одна остановка до Kanda, в отеле будем к двум. Номер дают с 15:00, чемоданы оставляем на ресепшене. Вечером двенадцать минут по Chuo Rapid до Синдзюку: неон Кабукитё<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Kabukicho+Ichibangai+Gate+Shinjuku" target="_blank" rel="noopener" aria-label="Кабукитё на Google Maps"></a> и ужин в <a href="https://ja.wikipedia.org/wiki/%E6%80%9D%E3%81%84%E5%87%BA%E6%A8%AA%E4%B8%81" target="_blank" rel="noopener">Omoide Yokocho</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Omoide+Yokocho+Shinjuku" target="_blank" rel="noopener" aria-label="Omoide Yokocho на Google Maps"></a>, переулке на полсотни идзакай у путей</p>
+            <p class="aside">Если после перелёта останутся силы, заглянем в <a href="https://en.wikipedia.org/wiki/Golden_Gai" target="_blank" rel="noopener">Golden Gai</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Golden+Gai+Shinjuku" target="_blank" rel="noopener" aria-label="Golden Gai на Google Maps"></a> по соседству: квартал двухсот крошечных баров на шесть мест каждый. Внутрь идти не обязательно, он и снаружи работает как музей под открытым небом. Если сил нет совсем, в двух минутах от отеля идзакаи под путями у станции Kanda</p>
           </div>
           <div class="carousel">
             <div class="car-track">
@@ -366,7 +412,7 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
         <div class="day-body">
           <div class="day-text">
             <h3>Котики, Асакуса и залив</h3>
-            <p>В 8:50 выходим из отеля: Chuo Rapid до Синдзюку, двенадцать минут по линии Odakyu и десять пешком, к 10:00 мы в <a href="https://en.wikipedia.org/wiki/G%C5%8Dtoku-ji" target="_blank" rel="noopener">храме Готокудзи</a> с тысячами манэки-нэко, утром там почти пусто. Обратно можно уехать ретро-трамваем линии Сэтагая от Miyanosaka. К полудню Асакуса: Сэнсо-дзи, обед и уличная еда на Накамисэ-дори. В 15:30 слот в <a href="https://www.teamlab.art/e/planets/" target="_blank" rel="noopener">teamLab Planets</a> в Тоёсу, билеты берём заранее, на месте их не бывает. Оттуда на Гиндзу: от Тоёсу линия Юракутё идёт без пересадок до Гиндза-итчёмэ, минут десять плюс немного пешком. В 20:30 <a href="https://www.klook.com/activity/165080-tokyo-sumo-show-and-mikoshi-experience/" target="_blank" rel="noopener">Tokyo Sumo Show</a> в подвале Ginza INZ (Гиндза-Ниси, 3-тёмэ, Тюо-ку), берём Plan A: показательные схватки и ритуалы от бывших профи у самого дохё, можно бросать соль и вытянуть жребий на «Challenge Sumo», тянконабэ и напитки без ограничений включены в билет. Около 39 € с человека на Klook</p>
+            <p>В 8:50 выходим из отеля: Chuo Rapid до Синдзюку, двенадцать минут по линии Odakyu и десять пешком, к 10:00 мы в <a href="https://en.wikipedia.org/wiki/G%C5%8Dtoku-ji" target="_blank" rel="noopener">храме Готокудзи</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Gotokuji+Temple+Setagaya" target="_blank" rel="noopener" aria-label="Готокудзи на Google Maps"></a> с тысячами манэки-нэко, утром там почти пусто. Обратно можно уехать ретро-трамваем линии Сэтагая от Miyanosaka. К полудню Асакуса: Сэнсо-дзи<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Senso-ji+Asakusa" target="_blank" rel="noopener" aria-label="Сэнсо-дзи на Google Maps"></a>, обед и уличная еда на Накамисэ-дори<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Nakamise-dori+Asakusa" target="_blank" rel="noopener" aria-label="Накамисэ-дори на Google Maps"></a>. В 15:30 слот в <a href="https://www.teamlab.art/e/planets/" target="_blank" rel="noopener">teamLab Planets</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=teamLab+Planets+Toyosu" target="_blank" rel="noopener" aria-label="teamLab Planets на Google Maps"></a> в Тоёсу, билеты берём заранее, на месте их не бывает. Оттуда на Гиндзу: от Тоёсу линия Юракутё идёт без пересадок до Гиндза-итчёмэ, минут десять плюс немного пешком. В 20:30 <a href="https://www.klook.com/activity/165080-tokyo-sumo-show-and-mikoshi-experience/" target="_blank" rel="noopener">Tokyo Sumo Show</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Ginza+INZ+Ginza-nishi+3-chome" target="_blank" rel="noopener" aria-label="Ginza INZ на Google Maps"></a> в подвале Ginza INZ (Гиндза-Ниси, 3-тёмэ, Тюо-ку), берём Plan A: показательные схватки и ритуалы от бывших профи у самого дохё, можно бросать соль и вытянуть жребий на «Challenge Sumo», тянконабэ и напитки без ограничений включены в билет. Около 39 € с человека на Klook</p>
             <p class="aside">Ужин отдельно не планируем: на шоу безлимитный тянконабэ и напитки, домой от Гиндзы семь минут по линии Гиндза. Акихабару вычеркнули общим решением, но теперь она в десяти минутах пешком от отеля: если вечером останутся силы, можно заглянуть по пути</p>
           </div>
           <div class="carousel">
@@ -400,7 +446,7 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
           </div>
         </div>
         <div class="note" style="margin-top:24px">
-          <b>Рядом с котиками:</b> если идём в Готокудзи за порцией удачи от манэки-нэко, по соседству стоит заглянуть в кафе <a href="https://www.tripadvisor.com/Restaurant_Review-g1066455-d26699232-Reviews-Rarasand-Setagaya_Tokyo_Tokyo_Prefecture_Kanto.html" target="_blank" rel="noopener">RARA SAND SETAGAYA</a>
+          <b>Рядом с котиками:</b> если идём в Готокудзи за порцией удачи от манэки-нэко, по соседству стоит заглянуть в кафе <a href="https://www.tripadvisor.com/Restaurant_Review-g1066455-d26699232-Reviews-Rarasand-Setagaya_Tokyo_Tokyo_Prefecture_Kanto.html" target="_blank" rel="noopener">RARA SAND SETAGAYA</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=RARA+SAND+SETAGAYA" target="_blank" rel="noopener" aria-label="RARA SAND SETAGAYA на Google Maps"></a>
         </div>
       </article>
 
@@ -413,7 +459,7 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
         <div class="day-body">
           <div class="day-text">
             <h3>Фудзикавагутико</h3>
-            <p>Выходим в 6:15 и по Chuo Rapid едем до Синдзюку на автобус 7:00 от Busta Shinjuku: два часа в пути, около 2 200 ¥, места именные, билет берём заранее. Завтрак в отеле начинается в 6:30, так что берём онигири в конбини. Сначала <a href="https://en.wikipedia.org/wiki/Lawson_Kawaguchiko_Ekimae" target="_blank" rel="noopener">тот самый Lawson</a> напротив станции, потом набережная озера Кавагути и, по желанию, канатка Качи-Качи. Дальше электричка до Симо-Ёсиды и подъём к пагоде Чурэйто: пагода, красные клёны и Фудзи в одном кадре. Ради этого кадра день и построен</p>
+            <p>Выходим в 6:15 и по Chuo Rapid едем до Синдзюку на автобус 7:00 от Busta Shinjuku: два часа в пути, около 2 200 ¥, места именные, билет берём заранее. Завтрак в отеле начинается в 6:30, так что берём онигири в конбини. Сначала тот самый Lawson<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Lawson+Kawaguchiko+Ekimae" target="_blank" rel="noopener" aria-label="Lawson Kawaguchiko на Google Maps"></a> напротив станции, потом набережная озера Кавагути<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Lake+Kawaguchi" target="_blank" rel="noopener" aria-label="Озеро Кавагути на Google Maps"></a> и, по желанию, канатка Качи-Качи<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Mt+Fuji+Panoramic+Ropeway+Kachi+Kachi" target="_blank" rel="noopener" aria-label="Канатка Качи-Качи на Google Maps"></a>. Дальше электричка до Симо-Ёсиды и подъём к пагоде Чурэйто<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Chureito+Pagoda" target="_blank" rel="noopener" aria-label="Пагода Чурэйто на Google Maps"></a>: пагода, красные клёны и Фудзи в одном кадре. Ради этого кадра день и построен</p>
             <p class="aside">Фудзи обычно видна до десяти утра, потом её затягивает. Если на пятницу обещают облака, меняем день местами с субботой. Если облачно оба дня, всё равно едем: клёны и пагода работают и без горы. Кавагутико стоит на 850 метрах, утром там от +3 до +7, тёплый слой обязателен</p>
           </div>
           <div class="carousel">
@@ -449,7 +495,7 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
         <div class="day-body">
           <div class="day-text">
             <h3>Гарри Поттер, Сибуя и Хэллоуин</h3>
-            <p>С 9:00 до 13:00 <a href="https://www.wbstudiotour.jp/" target="_blank" rel="noopener">Warner Bros. Studio Tour</a>: студия «Гарри Поттера» у станции Toshimaen. Выходим в 8:00: Chuo Rapid до Синдзюку и линия Оэдо, около пятидесяти минут в сумме. Сам тур идёт три-четыре часа, билет 6 500–7 000 ¥ на официальном сайте, и брать нужно уже сейчас: хэллоуинскую субботу разбирают первой. Днём Сибуя: перекрёсток, Хатико. На закат поднимаемся на <a href="https://www.shibuya-scramble-square.com/sky/" target="_blank" rel="noopener">Shibuya Sky</a>, слоты разбирают за недели</p>
+            <p>С 9:00 до 13:00 <a href="https://www.wbstudiotour.jp/" target="_blank" rel="noopener">Warner Bros. Studio Tour</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Warner+Bros+Studio+Tour+Tokyo" target="_blank" rel="noopener" aria-label="Warner Bros. Studio Tour на Google Maps"></a>: студия «Гарри Поттера» у станции Toshimaen. Выходим в 8:00: Chuo Rapid до Синдзюку и линия Оэдо, около пятидесяти минут в сумме. Сам тур идёт три-четыре часа, билет 6 500–7 000 ¥ на официальном сайте, и брать нужно уже сейчас: хэллоуинскую субботу разбирают первой. Днём Сибуя: перекрёсток<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Shibuya+Scramble+Crossing" target="_blank" rel="noopener" aria-label="Перекрёсток Сибуя на Google Maps"></a>, Хатико<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Hachiko+Statue+Shibuya" target="_blank" rel="noopener" aria-label="Хатико на Google Maps"></a>. На закат поднимаемся на <a href="https://www.shibuya-scramble-square.com/sky/" target="_blank" rel="noopener">Shibuya Sky</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Shibuya+Sky" target="_blank" rel="noopener" aria-label="Shibuya Sky на Google Maps"></a>, слоты разбирают за недели</p>
             <p class="aside">Вечером Хэллоуин: костюмированные толпы в Сибуе и Синдзюку. Карнавал бесплатный, но к давке лучше быть готовыми. Домой от Сибуи по линии Гиндза без пересадок, минут двадцать пять</p>
           </div>
           <div class="carousel">
@@ -484,7 +530,7 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
         <div class="day-body">
           <div class="day-text">
             <h3>Камакура</h3>
-            <p>Выезжаем около 9:30: одна остановка до Tokyo, оттуда JR Yokosuka идёт прямо до Камакуры, минут пятьдесят пять. Сначала <a href="https://en.wikipedia.org/wiki/K%C5%8Dtoku-in" target="_blank" rel="noopener">Большой Будда</a>, потом поезд Эноден вдоль океана и переезд у станции Камакуракоко-маэ, тот самый кадр из Slam Dunk. Дальше остров Эносима на закат: с утренним стартом он теперь успевается спокойно. Вечером Эноденом до Фудзисавы и по Tokaido до Tokyo, около часа, дома собираем чемоданы</p>
+            <p>Выезжаем около 9:30: одна остановка до Tokyo, оттуда JR Yokosuka идёт прямо до Камакуры, минут пятьдесят пять. Сначала <a href="https://en.wikipedia.org/wiki/K%C5%8Dtoku-in" target="_blank" rel="noopener">Большой Будда</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Kotoku-in+Great+Buddha+Kamakura" target="_blank" rel="noopener" aria-label="Большой Будда Камакуры на Google Maps"></a>, потом поезд Эноден вдоль океана и переезд у станции Камакуракоко-маэ<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Kamakurakokomae+Station" target="_blank" rel="noopener" aria-label="Камакуракоко-маэ на Google Maps"></a>, тот самый кадр из Slam Dunk. Дальше остров Эносима<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Enoshima" target="_blank" rel="noopener" aria-label="Эносима на Google Maps"></a> на закат: с утренним стартом он теперь успевается спокойно. Вечером Эноденом до Фудзисавы и по Tokaido до Tokyo, около часа, дома собираем чемоданы</p>
           </div>
           <div class="carousel">
             <div class="car-track">
@@ -520,7 +566,7 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
         <div class="day-body">
           <div class="day-text">
             <h3>Гибли, лестница и синкансэн</h3>
-            <p>В 9:00 сдаём номер и оставляем чемоданы на ресепшене, дальше полчаса по Chuo Rapid до Митаки и пятнадцать минут пешком вдоль канала. В 10:00 <a href="https://www.ghibli-museum.jp/en/" target="_blank" rel="noopener">музей Гибли</a>: билеты уже у нас. Впускают до 10:30, позже не пустят, повторного входа нет. Оттуда по той же линии Тюо в Ёцую, около 13:15 <a href="https://en.wikipedia.org/wiki/Suga_Shrine_(Tokyo)" target="_blank" rel="noopener">лестница святилища Суга</a> из «Твоё имя», на кадр хватит пятнадцати минут. Та же линия везёт дальше в Канду: забираем чемоданы, одна остановка до Tokyo, и около 15:00 синкансэн Nozomi до Син-Осаки, два с половиной часа и около 14 500 ¥. От Син-Осаки по Midosuji до Namba, в отеле к шести. Вечером <a href="https://en.wikipedia.org/wiki/D%C5%8Dtonbori" target="_blank" rel="noopener">Дотонбори</a> в трёх минутах: Глико-мэн, такояки и окономияки</p>
+            <p>В 9:00 сдаём номер и оставляем чемоданы на ресепшене, дальше полчаса по Chuo Rapid до Митаки и пятнадцать минут пешком вдоль канала. В 10:00 <a href="https://www.ghibli-museum.jp/en/" target="_blank" rel="noopener">музей Гибли</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Ghibli+Museum+Mitaka" target="_blank" rel="noopener" aria-label="Музей Гибли на Google Maps"></a>: билеты уже у нас. Впускают до 10:30, позже не пустят, повторного входа нет. Оттуда по той же линии Тюо в Ёцую, около 13:15 <a href="https://en.wikipedia.org/wiki/Suga_Shrine_(Shinjuku)" target="_blank" rel="noopener">лестница святилища Суга</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Suga+Shrine+Stairs+Yotsuya" target="_blank" rel="noopener" aria-label="Лестница святилища Суга на Google Maps"></a> из «Твоё имя», на кадр хватит пятнадцати минут. Та же линия везёт дальше в Канду: забираем чемоданы, одна остановка до Tokyo, и около 15:00 синкансэн Nozomi до Син-Осаки, два с половиной часа и около 14 500 ¥. От Син-Осаки по Midosuji до Namba, в отеле к шести. Вечером <a href="https://en.wikipedia.org/wiki/D%C5%8Dtonbori" target="_blank" rel="noopener">Дотонбори</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Dotonbori+Glico+Sign" target="_blank" rel="noopener" aria-label="Дотонбори на Google Maps"></a> в трёх минутах: Глико-мэн, такояки и окономияки</p>
           </div>
           <div class="carousel">
             <div class="car-track">
@@ -557,12 +603,20 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
     <div class="note reveal">
       <b>Резерв:</b> план плотный, запасного дня нет. Если что-то горит, жертвуем в таком порядке: сначала Эносима, потом хэллоуинский вечер, в крайнем случае Камакура
     </div>
-  </section>
+      </div>
+    </details>
 
-  <section class="block" id="kansai">
-    <div class="section-head reveal">
-      <span class="kicker">2.11 – 5.11, база в Намбе</span>
-      <h2>Кансай</h2>
+    <details class="chapter" id="kansai">
+      <summary>
+        <div class="chapter-title">
+          <span class="kicker">2.11 – 5.11, база в Намбе</span>
+          <h2>Кансай</h2>
+          <p class="chapter-meta">Дотонбори, Нара и замок Осаки, Киото одним днём, Куромон</p>
+        </div>
+        <span class="chapter-toggle"><span class="label when-closed">Развернуть</span><span class="label when-open">Свернуть</span><span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9.5 L12 15 L18 9.5"/></svg></span></span>
+      </summary>
+      <div class="chapter-body">
+    <div class="section-head">
       <p>Три ночи в Намбе. Приезжаем вечером 2.11 сразу на Дотонбори, дальше Нара с замком Осаки в праздничный вторник и Киото одним длинным днём в среду. Вечера оставляем городу</p>
       <div class="note">
         <b>База:</b> отель в Намбе, Тюо-ку. Две минуты от выхода 24 станции Namba и Kintetsu Osaka-Namba, три до Дотонбори, пять до Nankai Namba. Заезд с 15:00 до 22:00, выезд до 10:00, завтрак-буфет включён с 6:30 до 9:00, багаж после выезда хранят
@@ -578,8 +632,8 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
         <div class="day-body">
           <div class="day-text">
             <h3>Нара, замок и Синсэкай</h3>
-            <p>Kintetsu от Osaka-Namba, в двух минутах от отеля, идёт прямо до Kintetsu-Nara, минут сорок. Утром <a href="https://en.wikipedia.org/wiki/Nara_Park" target="_blank" rel="noopener">парк Нары</a>: покупаем сэмбэй, олени кланяются, дальше по обстановке. Рядом <a href="https://en.wikipedia.org/wiki/T%C5%8Ddai-ji" target="_blank" rel="noopener">Тодай-дзи</a> с Большим Буддой. К 15:00 возвращаемся в Осаку: Kintetsu до Tsuruhashi, оттуда JR Loop до Morinomiya, и до заката гуляем в парке <a href="https://en.wikipedia.org/wiki/Osaka_Castle" target="_blank" rel="noopener">замка Осаки</a>: стены и рвы снаружи интереснее музея внутри. Вечером <a href="https://en.wikipedia.org/wiki/Shinsekai" target="_blank" rel="noopener">Синсэкай</a>, ретро-неон и кусикацу, домой две остановки по Midosuji от Dobutsuen-mae</p>
-            <p class="aside">Если к этому моменту захочется отмокнуть, в Синсэкае есть Spa World, банный комплекс на весь вечер</p>
+            <p>Kintetsu от Osaka-Namba, в двух минутах от отеля, идёт прямо до Kintetsu-Nara, минут сорок. Утром <a href="https://en.wikipedia.org/wiki/Nara_Park" target="_blank" rel="noopener">парк Нары</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Nara+Park" target="_blank" rel="noopener" aria-label="Парк Нары на Google Maps"></a>: покупаем сэмбэй, олени кланяются, дальше по обстановке. Рядом <a href="https://en.wikipedia.org/wiki/T%C5%8Ddai-ji" target="_blank" rel="noopener">Тодай-дзи</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Todai-ji+Nara" target="_blank" rel="noopener" aria-label="Тодай-дзи на Google Maps"></a> с Большим Буддой. К 15:00 возвращаемся в Осаку: Kintetsu до Tsuruhashi, оттуда JR Loop до Morinomiya, и до заката гуляем в парке <a href="https://en.wikipedia.org/wiki/Osaka_Castle" target="_blank" rel="noopener">замка Осаки</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Osaka+Castle" target="_blank" rel="noopener" aria-label="Замок Осаки на Google Maps"></a>: стены и рвы снаружи интереснее музея внутри. Вечером <a href="https://en.wikipedia.org/wiki/Shinsekai" target="_blank" rel="noopener">Синсэкай</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Shinsekai+Tsutenkaku+Osaka" target="_blank" rel="noopener" aria-label="Синсэкай на Google Maps"></a>, ретро-неон и кусикацу, домой две остановки по Midosuji от Dobutsuen-mae</p>
+            <p class="aside">Если к этому моменту захочется отмокнуть, в Синсэкае есть Spa World<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Spa+World+Osaka" target="_blank" rel="noopener" aria-label="Spa World на Google Maps"></a>, банный комплекс на весь вечер</p>
           </div>
           <div class="carousel">
             <div class="car-track">
@@ -655,12 +709,12 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
           </div>
         </div>
         <div class="steps">
-          <div class="step"><p><span class="t">Фусими Инари к 8:30</span> Завтракаем в отеле с 6:30, выезд в 7:30: Midosuji до Yodoyabashi, оттуда Keihan до Fushimi-Inari. Тоннели торий ещё пустые. Поднимаемся до смотровой Ёцуцудзи</p></div>
-          <div class="step"><p><span class="t">Киёмидзу-дэра до 11:00</span> Потом народу станет заметно больше</p></div>
-          <div class="step"><p><span class="t">Спуск через Саннэн-дзака и Нинэн-дзака</span> По пути пагода Ясака, обед в Гионе</p></div>
-          <div class="step"><p><span class="t">Арасияма после обеда</span> Бамбуковая роща и мост Тогэцукё</p></div>
-          <div class="step"><p><span class="t">Нинна-дзи до 17:00</span> Десять минут на Рандэн от Арасиямы, на комплекс закладываем час</p></div>
-          <div class="step"><p><span class="t">Вечер</span> Гион в сумерках или ужин в Понтотё, потом Keihan от Gion-Shijo до Yodoyabashi и Midosuji до Namba</p></div>
+          <div class="step"><p><span class="t">Фусими Инари к 8:30</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Fushimi+Inari+Taisha" target="_blank" rel="noopener" aria-label="Фусими Инари на Google Maps"></a> Завтракаем в отеле с 6:30, выезд в 7:30: Midosuji до Yodoyabashi, оттуда Keihan до Fushimi-Inari. Тоннели торий ещё пустые. Поднимаемся до смотровой Ёцуцудзи</p></div>
+          <div class="step"><p><span class="t">Киёмидзу-дэра до 11:00</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Kiyomizu-dera" target="_blank" rel="noopener" aria-label="Киёмидзу-дэра на Google Maps"></a> Потом народу станет заметно больше</p></div>
+          <div class="step"><p><span class="t">Спуск через Саннэн-дзака и Нинэн-дзака</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Sannenzaka+Kyoto" target="_blank" rel="noopener" aria-label="Саннэн-дзака на Google Maps"></a> По пути пагода Ясака<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Yasaka+Pagoda+Hokanji" target="_blank" rel="noopener" aria-label="Пагода Ясака на Google Maps"></a>, обед в Гионе</p></div>
+          <div class="step"><p><span class="t">Арасияма после обеда</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Arashiyama+Bamboo+Grove" target="_blank" rel="noopener" aria-label="Бамбуковая роща Арасиямы на Google Maps"></a> Бамбуковая роща и мост Тогэцукё<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Togetsukyo+Bridge" target="_blank" rel="noopener" aria-label="Мост Тогэцукё на Google Maps"></a></p></div>
+          <div class="step"><p><span class="t">Нинна-дзи до 17:00</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Ninna-ji+Temple+Kyoto" target="_blank" rel="noopener" aria-label="Нинна-дзи на Google Maps"></a> Десять минут на Рандэн от Арасиямы, на комплекс закладываем час</p></div>
+          <div class="step"><p><span class="t">Вечер</span> Гион<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Hanamikoji+Street+Gion" target="_blank" rel="noopener" aria-label="Гион на Google Maps"></a> в сумерках или ужин в Понтотё<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Pontocho+Alley+Kyoto" target="_blank" rel="noopener" aria-label="Понтотё на Google Maps"></a>, потом Keihan от Gion-Shijo до Yodoyabashi и Midosuji до Namba</p></div>
         </div>
         <div class="note" style="margin-top:24px">
           <b>Почему Нинна-дзи вместо Кинкаку-дзи:</b> Золотой павильон это по сути одна точка обзора, двадцать минут в толпе у пруда – обошёл и вышел. Нинна-дзи вместо этого просторный комплекс на неспешный час: ворота Нио-мон, пагода, сад Хондзё и знаменитые низкорослые сакуры Омуро. В ноябре они не цветут, зато вокруг клёны. Закрывается тоже около 17:00, но от Арасиямы добираться проще, так что шансы успеть выше – и день выходит спокойнее
@@ -675,7 +729,7 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
         <div class="day-body">
           <div class="day-text">
             <h3>Рынок Куромон и аэропорт</h3>
-            <p>Около 9:00 сдаём номер, выезд до 10:00, и оставляем чемоданы на ресепшене. Последнее утро отдаём рынку <a href="https://en.wikipedia.org/wiki/Kuromon_Ichiba_Market" target="_blank" rel="noopener">Куромон</a> в десяти минутах пешком: устрицы, вагю и фрукты. Около 11:00 забираем багаж и идём пять минут до Nankai Namba: rapi:t довозит до KIX минут за сорок, места в нём только по билету, Airport Express едет минут сорок пять</p>
+            <p>Около 9:00 сдаём номер, выезд до 10:00, и оставляем чемоданы на ресепшене. Последнее утро отдаём рынку <a href="https://ja.wikipedia.org/wiki/%E9%BB%92%E9%96%80%E5%B8%82%E5%A0%B4" target="_blank" rel="noopener">Куромон</a><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Kuromon+Ichiba+Market" target="_blank" rel="noopener" aria-label="Рынок Куромон на Google Maps"></a> в десяти минутах пешком: устрицы, вагю и фрукты. Около 11:00 забираем багаж и идём пять минут до Nankai Namba: rapi:t довозит до KIX минут за сорок, места в нём только по билету, Airport Express едет минут сорок пять</p>
           </div>
           <div class="carousel">
             <div class="car-track">
@@ -697,14 +751,271 @@ footer{margin-top:120px;border-top:1px solid var(--line);background:var(--surfac
         </div>
       </article>
     </div>
+      </div>
+    </details>
+
+    <div class="group-label later reveal">Тайвань · 6.11 – 9.11</div>
+
+    <details class="chapter" id="taiwan" open>
+      <summary>
+        <div class="chapter-title">
+          <span class="kicker">6.11 – 9.11, база в Чжуншане</span>
+          <h2>Тайвань</h2>
+          <p class="chapter-meta">Старый Тайбэй и Синьи, Дворцовый музей и Бэйтоу, Шифэнь и Цзюфэнь</p>
+        </div>
+        <span class="chapter-toggle"><span class="label when-closed">Развернуть</span><span class="label when-open">Свернуть</span><span class="chev"><svg viewBox="0 0 24 24"><path d="M6 9.5 L12 15 L18 9.5"/></svg></span></span>
+      </summary>
+      <div class="chapter-body">
+    <div class="section-head">
+      <p>Четыре дня в Тайбэе: старый город и Синьи, музей и горячие источники на дождливую субботу, солнечное воскресенье за городом и спокойное последнее утро у отеля. Значок <span class="pin-legend" role="img" aria-label="пин"></span> рядом с местом открывает его в Google Maps</p>
+      <div class="note">
+        <b>База:</b> отель на Наньцзин-роуд, район Чжуншань. Минут десять пешком до станций MRT Zhongshan и Songjiang Nanjing. Заезд с 15:00, выезд до 12:00. Самолёт 9.11 в 18:30
+      </div>
+    </div>
+
+    <div class="days">
+      <article class="day reveal">
+        <div class="day-head">
+          <span class="date">6.11, пятница</span>
+          <span class="tag tag-yellow">закат ~17:10</span>
+        </div>
+        <div class="day-body">
+          <div class="day-text">
+            <h3>Старый город, гора Слона и Синьи</h3>
+            <p>Утро в старом Тайбэе: храм Луншань и торговая улица Дихуа. Днём мемориал Чан Кайши и обед на улице Юнкан, туда от мемориала пешком. К закату поднимаемся на гору Слона за классическим видом на 101, ужинаем в Синьи и заканчиваем на ночном рынке Жаохэ</p>
+            <p class="aside">На гору Слона двадцать минут по ступеням: чтобы застать закат около 17:10 и потом огни, у начала тропы надо быть к 16:40</p>
+          </div>
+          <div class="carousel">
+            <div class="car-track">
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/longshan.webp" alt="Фасад храма Луншань с резными крышами" loading="lazy"></div>
+                <figcaption>Храм Луншань: старейший в городе, 1738 год</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/dihua.webp" alt="Старые торговые дома на улице Дихуа" loading="lazy"></div>
+                <figcaption>Дихуа: чай, сухофрукты и фасады эпохи Цин</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/cks-memorial.webp" alt="Белый мемориал Чан Кайши с синей крышей" loading="lazy"></div>
+                <figcaption>Мемориал Чан Кайши: смена караула каждый час</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/din-tai-fung.webp" alt="Повара Din Tai Fung лепят сяолунбао за стеклом" loading="lazy"></div>
+                <figcaption>Din Tai Fung: сяолунбао на обед</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/elephant-mountain.webp" alt="Закат и башня Тайбэй 101 с горы Слона" loading="lazy"></div>
+                <figcaption>Гора Слона: 101 на закате</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/xinyi-night.webp" alt="Ночная улица Синьи и башня Тайбэй 101" loading="lazy"></div>
+                <figcaption>Синьи: ужин под 101</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/raohe.webp" alt="Светящиеся ворота ночного рынка Жаохэ" loading="lazy"></div>
+                <figcaption>Жаохэ: перечные булочки у входа</figcaption>
+              </figure>
+            </div>
+            <div class="car-ui">
+              <button class="car-btn prev" type="button" aria-label="Предыдущий кадр"><svg viewBox="0 0 24 24"><path d="M14.5 6 L9 12 L14.5 18"/></svg></button>
+              <span class="car-count">1 / 7</span>
+              <button class="car-btn next" type="button" aria-label="Следующий кадр"><svg viewBox="0 0 24 24"><path d="M9.5 6 L15 12 L9.5 18"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="steps">
+          <div class="step"><p><span class="when">Утро</span><span class="t"><a href="https://en.wikipedia.org/wiki/Longshan_Temple_(Taipei)" target="_blank" rel="noopener">Храм Луншань</a></span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Longshan+Temple+Taipei" target="_blank" rel="noopener" aria-label="Храм Луншань на Google Maps"></a> Старейший храм города, 1738 год: Гуаньинь, благовония, гадательные палочки. Рядом улица Бопилиао с колониальными домами</p></div>
+          <div class="step"><p><span class="when">Утро – день</span><span class="t"><a href="https://en.wikipedia.org/wiki/Dihua_Street" target="_blank" rel="noopener">Улица Дихуа</a> и Дадаочэн</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Dihua+Street+Taipei" target="_blank" rel="noopener" aria-label="Улица Дихуа на Google Maps"></a> Старая торговая улица: чай, сухофрукты, ткани, фасады эпохи Цин и японского времени, кафе в старых домах</p></div>
+          <div class="step"><p><span class="when">День</span><span class="t"><a href="https://en.wikipedia.org/wiki/Chiang_Kai-shek_Memorial_Hall" target="_blank" rel="noopener">Мемориал Чан Кайши</a></span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Chiang+Kai-shek+Memorial+Hall" target="_blank" rel="noopener" aria-label="Мемориал Чан Кайши на Google Maps"></a> Белый зал с синей крышей, площадь Свободы, смена караула каждый час</p></div>
+          <div class="step"><p><span class="when">День</span><span class="t">Улица Юнкан</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Yongkang+Street+Taipei" target="_blank" rel="noopener" aria-label="Улица Юнкан на Google Maps"></a> Обед пешком от мемориала: первый <a href="https://en.wikipedia.org/wiki/Din_Tai_Fung" target="_blank" rel="noopener">Din Tai Fung</a>, на десерт манговый лёд</p></div>
+          <div class="step"><p><span class="when">Вечер, подъём к 16:40</span><span class="t">Гора Слона (Сяншань)</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Xiangshan+Elephant+Mountain+Trail+Taipei" target="_blank" rel="noopener" aria-label="Гора Слона на Google Maps"></a> Двадцать минут по ступеням ради классического вида на 101: закат около 17:10, потом огни</p></div>
+          <div class="step"><p><span class="when">Вечер</span><span class="t"><a href="https://en.wikipedia.org/wiki/Taipei_101" target="_blank" rel="noopener">Тайбэй 101</a> и Синьи</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Taipei+101" target="_blank" rel="noopener" aria-label="Тайбэй 101 на Google Maps"></a> Ужин в Синьи, по желанию смотровая, около 600 NT$</p></div>
+          <div class="step"><p><span class="when">Вечер</span><span class="t"><a href="https://en.wikipedia.org/wiki/Raohe_Street_Night_Market" target="_blank" rel="noopener">Ночной рынок Жаохэ</a></span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Raohe+Street+Night+Market" target="_blank" rel="noopener" aria-label="Ночной рынок Жаохэ на Google Maps"></a> Перечные булочки у входа, храм Цыю, длинный рынок у станции Суншань</p></div>
+        </div>
+      </article>
+
+      <article class="day reveal">
+        <div class="day-head">
+          <span class="date">7.11, суббота</span>
+          <span class="tag tag-blue">прогноз: морось</span>
+          <span class="tag tag-red">плавки с собой</span>
+        </div>
+        <div class="day-body">
+          <div class="day-text">
+            <h3>Дворцовый музей и источники Бэйтоу</h3>
+            <p>Дождливый день отдаём крышам: к открытию в 9:00 едем в Национальный дворцовый музей, на императорскую коллекцию закладываем два-три часа. Оттуда на север в Бэйтоу: дымящееся серное озеро, японская баня 1913 года, деревянная библиотека и открытые горячие бассейны. Вечером Симэньдин с Красным домом и ужин на компактном рынке Нинся</p>
+            <p class="aside">В Millennium Public Hot Spring пускают только в плавках. Если хочется без толпы, в отелях Бэйтоу есть приватные комнаты с источником за 1 000–2 000 NT$</p>
+          </div>
+          <div class="carousel">
+            <div class="car-track">
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/palace-museum.webp" alt="Здание Национального дворцового музея на склоне холма" loading="lazy"></div>
+                <figcaption>Дворцовый музей: нефритовая капуста и «мясной камень»</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/thermal-valley.webp" alt="Пар над зелёным серным озером Thermal Valley" loading="lazy"></div>
+                <figcaption>Thermal Valley: серное озеро на 80–100 °C</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/beitou-museum.webp" alt="Кирпично-деревянное здание музея горячих источников Бэйтоу" loading="lazy"></div>
+                <figcaption>Музей горячих источников: японская баня 1913 года</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/beitou-library.webp" alt="Деревянная библиотека Бэйтоу в зелени" loading="lazy"></div>
+                <figcaption>Библиотека Бэйтоу: деревянная и «зелёная»</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/millennium.webp" alt="Вход в общественные горячие источники Бэйтоу" loading="lazy"></div>
+                <figcaption>Millennium Hot Spring: открытые бассейны, ~60 NT$</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/red-house.webp" alt="Кирпичный восьмиугольный Красный дом в Симэньдине" loading="lazy"></div>
+                <figcaption>Красный дом: восьмиугольный рынок 1908 года</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/ningxia.webp" alt="Неоновая вывеска и прилавки ночного рынка Нинся" loading="lazy"></div>
+                <figcaption>Нинся: устричный омлет и шарики таро</figcaption>
+              </figure>
+            </div>
+            <div class="car-ui">
+              <button class="car-btn prev" type="button" aria-label="Предыдущий кадр"><svg viewBox="0 0 24 24"><path d="M14.5 6 L9 12 L14.5 18"/></svg></button>
+              <span class="car-count">1 / 7</span>
+              <button class="car-btn next" type="button" aria-label="Следующий кадр"><svg viewBox="0 0 24 24"><path d="M9.5 6 L15 12 L9.5 18"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="steps">
+          <div class="step"><p><span class="when">Утро, к открытию в 9:00</span><span class="t"><a href="https://en.wikipedia.org/wiki/National_Palace_Museum" target="_blank" rel="noopener">Национальный дворцовый музей</a></span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=National+Palace+Museum+Taipei" target="_blank" rel="noopener" aria-label="Дворцовый музей на Google Maps"></a> Императорская коллекция, вывезенная из Пекина: нефритовая капуста, «мясной камень». Два-три часа, около 350 NT$</p></div>
+          <div class="step"><p><span class="when">День, Бэйтоу</span><span class="t">Thermal Valley</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Beitou+Thermal+Valley" target="_blank" rel="noopener" aria-label="Thermal Valley на Google Maps"></a> Серное озеро на 80–100 °C, зелёное и в пару. Бесплатно</p></div>
+          <div class="step"><p><span class="when">День, Бэйтоу</span><span class="t"><a href="https://en.wikipedia.org/wiki/Beitou_Hot_Spring_Museum" target="_blank" rel="noopener">Музей горячих источников</a> и <a href="https://en.wikipedia.org/wiki/Taipei_Public_Library_Beitou_Branch" target="_blank" rel="noopener">библиотека Бэйтоу</a></span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Beitou+Hot+Spring+Museum" target="_blank" rel="noopener" aria-label="Музей горячих источников Бэйтоу на Google Maps"></a> Японская баня 1913 года и деревянная «зелёная» библиотека по соседству. Оба бесплатно</p></div>
+          <div class="step"><p><span class="when">День, Бэйтоу</span><span class="t">Millennium Public Hot Spring</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Beitou+Millennium+Hot+Spring" target="_blank" rel="noopener" aria-label="Millennium Hot Spring на Google Maps"></a> Открытые бассейны, около 60 NT$, нужны плавки. Альтернатива: приватная комната в отеле за 1 000–2 000 NT$</p></div>
+          <div class="step"><p><span class="when">Вечер</span><span class="t"><a href="https://en.wikipedia.org/wiki/Ximending" target="_blank" rel="noopener">Симэньдин</a> и <a href="https://en.wikipedia.org/wiki/Red_House_Theater" target="_blank" rel="noopener">Красный дом</a></span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Ximending+Red+House" target="_blank" rel="noopener" aria-label="Красный дом в Симэньдине на Google Maps"></a> Молодёжный квартал и восьмиугольный рынок 1908 года</p></div>
+          <div class="step"><p><span class="when">Вечер</span><span class="t"><a href="https://en.wikipedia.org/wiki/Ningxia_Night_Market" target="_blank" rel="noopener">Ночной рынок Нинся</a></span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Ningxia+Night+Market" target="_blank" rel="noopener" aria-label="Ночной рынок Нинся на Google Maps"></a> Компактный, только еда, частично под навесами: устричный омлет, шарики таро</p></div>
+        </div>
+      </article>
+
+      <article class="day reveal">
+        <div class="day-head">
+          <span class="date">8.11, воскресенье</span>
+          <span class="tag tag-blue">прогноз: солнце</span>
+          <span class="tag tag-green">вылазка</span>
+        </div>
+        <div class="day-body">
+          <div class="day-text">
+            <h3>Шифэнь и Цзюфэнь</h3>
+            <p>Солнечный день целиком за городом. Около 9:30 выезжаем поездом в Жуйфан, оттуда веткой Пинси в Шифэнь: старая улица прямо на действующих путях, бумажные фонари и водопад в двадцати минутах пешком. После обеда возвращаемся в Жуйфан и автобусом поднимаемся в Цзюфэнь: лестницы и чайные с видом на бухту, закат около 17:10, фонари загораются с 17:30</p>
+            <p class="aside">Прогноз на воскресенье перепроверяем в субботу вечером по точке Ruifang. Йелю добавляем, только если берём шаттл на Klook</p>
+          </div>
+          <div class="carousel">
+            <div class="car-track">
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/shifen-street.webp" alt="Жёлтый поезд линии Пинси идёт по старой улице Шифэня" loading="lazy"></div>
+                <figcaption>Шифэнь: поезд прямо по улице</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/shifen-waterfall.webp" alt="Широкий водопад Шифэнь в зелёном ущелье" loading="lazy"></div>
+                <figcaption>Водопад Шифэнь: «тайваньская Ниагара»</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/yehliu.webp" alt="Выветренные грибовидные скалы геопарка Йелю" loading="lazy"></div>
+                <figcaption>Йелю: опция, если едем шаттлом</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/jiufen.webp" alt="Чайная A-Mei в Цзюфэне с красными фонарями в сумерках" loading="lazy"></div>
+                <figcaption>Чайная A-Mei: вид на бухту</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/jiufen-night.webp" alt="Лестница Шуци-роуд в Цзюфэне под красными фонарями" loading="lazy"></div>
+                <figcaption>Шуци-роуд: фонари с 17:30</figcaption>
+              </figure>
+            </div>
+            <div class="car-ui">
+              <button class="car-btn prev" type="button" aria-label="Предыдущий кадр"><svg viewBox="0 0 24 24"><path d="M14.5 6 L9 12 L14.5 18"/></svg></button>
+              <span class="car-count">1 / 5</span>
+              <button class="car-btn next" type="button" aria-label="Следующий кадр"><svg viewBox="0 0 24 24"><path d="M9.5 6 L15 12 L9.5 18"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="steps">
+          <div class="step"><p><span class="when">Утро, к 11:00</span><span class="t"><a href="https://en.wikipedia.org/wiki/Shifen" target="_blank" rel="noopener">Шифэнь</a>, старая улица</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Shifen+Old+Street" target="_blank" rel="noopener" aria-label="Старая улица Шифэнь на Google Maps"></a> Улица вдоль действующих путей, запуск бумажного фонаря за 150–200 NT$, лапша у рельсов</p></div>
+          <div class="step"><p><span class="when">День</span><span class="t"><a href="https://en.wikipedia.org/wiki/Shifen_Waterfall" target="_blank" rel="noopener">Водопад Шифэнь</a></span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Shifen+Waterfall" target="_blank" rel="noopener" aria-label="Водопад Шифэнь на Google Maps"></a> «Тайваньская Ниагара», двадцать минут пешком от улицы, бесплатно</p></div>
+          <div class="step"><p><span class="when">День, опция</span><span class="t"><a href="https://en.wikipedia.org/wiki/Yehliu" target="_blank" rel="noopener">Йелю</a></span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Yehliu+Geopark" target="_blank" rel="noopener" aria-label="Геопарк Йелю на Google Maps"></a> Выветренные скалы на побережье и «Голова королевы». Только если брать шаттл Йелю → Шифэнь → Цзюфэнь на Klook, около 1 000–1 300 NT$</p></div>
+          <div class="step"><p><span class="when">День – вечер, к 15:00</span><span class="t"><a href="https://en.wikipedia.org/wiki/Jiufen" target="_blank" rel="noopener">Цзюфэнь</a>, старая улица</span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Jiufen+Old+Street" target="_blank" rel="noopener" aria-label="Старая улица Цзюфэнь на Google Maps"></a> Лестницы Шуци-роуд, чайные с видом на бухту, A-Mei<a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=A-Mei+Tea+House+Jiufen" target="_blank" rel="noopener" aria-label="Чайная A-Mei на Google Maps"></a>, закат около 17:10, фонари с 17:30</p></div>
+        </div>
+        <div class="note" style="margin-top:24px">
+          <b>Логистика:</b> поезд до Жуйфана (~40 мин) → ветка Пинси до Шифэня (~30 мин) → назад в Жуйфан → автобус до Цзюфэня (~15 мин) → автобус 1062 в Тайбэй (~1 ч 15 мин). Выезд около 9:30, возвращаемся к 19:00–20:00
+        </div>
+      </article>
+
+      <article class="day reveal">
+        <div class="day-head">
+          <span class="date">9.11, понедельник</span>
+          <span class="tag tag-green">вылет 18:30</span>
+        </div>
+        <div class="day-body">
+          <div class="day-text">
+            <h3>Утро у отеля и аэропорт</h3>
+            <p>Последнее утро без транспорта: действующий храм Синтянь рядом с отелем, потом парк Суншань на месте табачной фабрики 1937 года. В 12:00 выезд из номера, чемоданы просим подержать на ресепшене до отъезда в аэропорт</p>
+            <p class="aside">По понедельникам закрыты Дворцовый музей и фуникулёр Маокун, поэтому их в этот день нет</p>
+          </div>
+          <div class="carousel">
+            <div class="car-track">
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/xingtian.webp" alt="Фасад храма Синтянь с красными дверями" loading="lazy"></div>
+                <figcaption>Храм Синтянь: Гуань Юй и очищение благовониями</figcaption>
+              </figure>
+              <figure class="slide">
+                <div class="photo-frame"><img src="assets/songshan-park.webp" alt="Склады бывшей табачной фабрики в парке Суншань" loading="lazy"></div>
+                <figcaption>Songshan Cultural Park: табачная фабрика 1937 года</figcaption>
+              </figure>
+            </div>
+            <div class="car-ui">
+              <button class="car-btn prev" type="button" aria-label="Предыдущий кадр"><svg viewBox="0 0 24 24"><path d="M14.5 6 L9 12 L14.5 18"/></svg></button>
+              <span class="car-count">1 / 2</span>
+              <button class="car-btn next" type="button" aria-label="Следующий кадр"><svg viewBox="0 0 24 24"><path d="M9.5 6 L15 12 L9.5 18"/></svg></button>
+            </div>
+          </div>
+        </div>
+        <div class="steps">
+          <div class="step"><p><span class="when">Утро</span><span class="t"><a href="https://en.wikipedia.org/wiki/Xingtian_Temple" target="_blank" rel="noopener">Храм Синтянь</a></span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Xingtian+Temple+Taipei" target="_blank" rel="noopener" aria-label="Храм Синтянь на Google Maps"></a> Действующий храм Гуань Юя рядом с отелем, без туристов, бесплатное «очищение» благовониями</p></div>
+          <div class="step"><p><span class="when">Утро – день</span><span class="t"><a href="https://en.wikipedia.org/wiki/Songshan_Cultural_and_Creative_Park" target="_blank" rel="noopener">Songshan Cultural Park</a></span><a class="pin" href="https://www.google.com/maps/search/?api=1&amp;query=Songshan+Cultural+and+Creative+Park" target="_blank" rel="noopener" aria-label="Songshan Cultural Park на Google Maps"></a> Табачная фабрика 1937 года, выставки, пруд, рядом книжный Eslite</p></div>
+        </div>
+        <div class="note" style="margin-top:24px">
+          <b>Выезд в аэропорт:</b> если летим из Таоюаня, выходим из отеля не позже 14:30, метро-экспресс идёт около 40 минут. Если из Суншаня, можно выйти до 16:00
+        </div>
+      </article>
+    </div>
+
+    <div class="bento">
+      <div class="card reveal">
+        <h3>Правила города</h3>
+        <ul class="rules">
+          <li><b>Метро:</b> никакой еды и питья за турникетами, штраф 1 500–7 500 NT$. На эскалаторе стоим справа</li>
+          <li><b>Переходы:</b> штраф 500 NT$ за красный или вне зебры. На зелёный смотрим на поворачивающие машины и скутеры</li>
+          <li><b>Вейпы</b> запрещены полностью. Курить только в отведённых местах</li>
+          <li><b>Мусор:</b> урн на улицах нет. Носим с собой, выбрасываем в 7-Eleven или в метро</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h3>Деньги и закрытия</h3>
+        <ul class="rules">
+          <li><b>Ночные рынки</b> часто принимают только наличные</li>
+          <li><b>EasyCard</b> работает в метро, автобусе, поезде и магазинах</li>
+          <li><b>Маокун</b> на понедельник не ставим: фуникулёр по понедельникам закрыт. Дворцовый музей тоже</li>
+          <li><b>Погода:</b> прогноз на воскресенье перепроверить в субботу вечером по точке Ruifang</li>
+        </ul>
+      </div>
+    </div>
+      </div>
+    </details>
   </section>
 </div>
 </main>
 
 <footer>
   <div class="footer-inner">
-    <span>Япония, 28 октября – 5 ноября 2026, собрано по заметкам с планинг-доски</span>
-    <span>Фотографии из Wikimedia Commons. Прилёт в Нариту, вылет из Кансая</span>
+    <span>Япония 28.10 – 5.11 и Тайбэй 6–9.11.2026, собрано по заметкам с планинг-доски</span>
+    <span>Фотографии из Wikimedia Commons. Пин открывает место в Google Maps</span>
   </div>
 </footer>
 
@@ -723,7 +1034,7 @@ document.querySelectorAll('.carousel').forEach(c=>{
   const track=c.querySelector('.car-track');
   const total=track.children.length;
   const count=c.querySelector('.car-count');
-  const index=()=>Math.round(track.scrollLeft/track.clientWidth);
+  const index=()=>Math.round(track.scrollLeft/(track.clientWidth||1));
   const update=()=>{count.textContent=`${Math.min(index()+1,total)} / ${total}`;};
   c.querySelector('.prev').addEventListener('click',()=>{
     const i=index();
@@ -734,8 +1045,22 @@ document.querySelectorAll('.carousel').forEach(c=>{
     track.scrollTo({left:(i>=total-1?0:i+1)*track.clientWidth,behavior:'smooth'});
   });
   track.addEventListener('scroll',()=>requestAnimationFrame(update));
+  const chapter=c.closest('details');
+  if(chapter)chapter.addEventListener('toggle',update);
   update();
 });
+const openChapter=hash=>{
+  if(!hash||hash.length<2)return null;
+  const el=document.getElementById(decodeURIComponent(hash.slice(1)));
+  if(el&&el.tagName==='DETAILS'){el.open=true;return el;}
+  return null;
+};
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',()=>openChapter(a.getAttribute('href')));
+});
+window.addEventListener('hashchange',()=>openChapter(location.hash));
+const initial=openChapter(location.hash);
+if(initial)requestAnimationFrame(()=>initial.scrollIntoView());
 </script>
 </body>
 </html>
